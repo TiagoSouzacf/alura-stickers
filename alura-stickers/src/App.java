@@ -9,9 +9,12 @@ public class App {
         // fazer uma conexao HTTP e buscar os tops 250 filmes
 
        API api = API.IMDB_TOP_SERIES;
-       String url = api.getUrl();
+       //String url = api.getUrl();
        //ExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
-       ExtratorDeConteudo extrator = api.getExtrator();
+       //ExtratorDeConteudo extrator = api.getExtrator();
+
+       String url = "http://localhost:8080/linguagens";
+       ExtratorDeConteudo extrator = new ExtratorDeConteudoDoIMDB();
 
         var http = new ClienteHttp();
         String json = http.buscaDados(url);
@@ -24,7 +27,7 @@ public class App {
 
         var geradora = new GeradoraDeFigurinhas();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < conteudos.size(); i++) {
             Conteudo conteudo = conteudos.get(i);
 
             InputStream inputStream = new URL(conteudo.getUrlImagem()).openStream();
